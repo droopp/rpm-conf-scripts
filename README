@@ -1,0 +1,8 @@
+#
+# Install Guide
+# 
+
+1. curl http://139.59.151.111:8888/RPMS/drop-bootstrap.sh|sh
+
+2. wait while cluster start .. (check drop-cli -> freenode_list..)
+
