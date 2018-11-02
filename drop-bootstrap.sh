@@ -18,6 +18,18 @@ echo " curl http://139.59.151.111:8888/RPMS/drop-bootstrap.sh|sh     "
 echo ""
 
 
+
+# add grants to group
+# echo "STEP 0. Configure host.."
+# echo "%drop-core     ALL=(ALL)       NOPASSWD:       /usr/bin/docker, /usr/bin/systemctl" >> /etc/sudoers
+# disable selinux
+# sed -i '/SELINUX=enforcing/c\SELINUX=disabled' /etc/sysconfig/selinux
+# setenforce 0 
+# flush ip rules
+# iptables -F
+
+
+
 echo "STEP 1. Create RPM repo.."
 echo ""
 
@@ -35,17 +47,18 @@ echo "STEP 2. Install packages.."
 echo ""
 
 yum install -y net-tools
+yum install -y haproxy
+
 yum install -y erlang 
 yum install -y drop-pyenv 
 yum install -y drop-core 
 yum install -y drop-gateway-api
 yum install -y drop-cli
+yum install -y drop-plgn-cmd-exec
 
-yum update -y net-tools
 yum update -y erlang 
 yum update -y drop-pyenv 
 yum update -y drop-core 
 yum update -y drop-gateway-api
 yum update -y drop-cli
-
-
+yum update -y drop-plgn-cmd-exec
