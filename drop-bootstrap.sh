@@ -22,12 +22,17 @@ echo ""
 # add grants to group
 # echo "STEP 0. Configure host.."
 
-# echo "%drop-core     ALL=(ALL)       NOPASSWD:       /usr/bin/docker, /usr/bin/systemctl" >> /etc/sudoers
+# echo "%drop-core     ALL=(ALL)       NOPASSWD:    /usr/bin/systemctl" >> /etc/sudoers
 # disable selinux
 # sed -i '/SELINUX=enforcing/c\SELINUX=disabled' /etc/sysconfig/selinux
 # setenforce 0 
 # flush ip rules
 # iptables -F
+#
+# If docker use
+# groupadd docker
+# systemctl restart docker
+# usermod -a -G docker drop-core
 #
 # system conf
 #
@@ -81,6 +86,7 @@ echo ""
 
 yum install -y net-tools
 yum install -y haproxy
+yum install -y docker
 
 yum install -y erlang 
 yum install -y drop-pyenv 
