@@ -22,7 +22,7 @@ echo ""
 # add grants to group
 # echo "STEP 0. Configure host.."
 
-# echo "%drop-core     ALL=(ALL)       NOPASSWD:    /usr/bin/systemctl" >> /etc/sudoers
+# echo "%drop-core     ALL=(ALL)       NOPASSWD:    /usr/bin/systemctl, /usr/sbin/ifconfig" >> /etc/sudoers
 # disable selinux
 # sed -i '/SELINUX=enforcing/c\SELINUX=disabled' /etc/sysconfig/selinux
 # setenforce 0 
