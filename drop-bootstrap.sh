@@ -23,17 +23,22 @@ echo ""
 # echo "STEP 0. Configure host.."
 
 # echo "%drop-core     ALL=(ALL)       NOPASSWD:    /usr/bin/systemctl, /usr/sbin/ifconfig" >> /etc/sudoers
-# disable selinux
-# sed -i '/SELINUX=enforcing/c\SELINUX=disabled' /etc/sysconfig/selinux
-# setenforce 0 
+
 # flush ip rules
+# enable multicast + vip annoncment
 # iptables -F
-#
+
 # If docker use
 # groupadd docker
 # systemctl restart docker
 # usermod -a -G docker drop-core
-#
+
+# If haproxy use
+# groupadd haproxy
+# chmod g+rw /etc/haproxy/haproxy.cfg
+# usermod -a -G haproxy drop-core
+# setsebool -P haproxy_connect_any=1
+
 # system conf
 #
 # ulimit -n 1000000
@@ -65,8 +70,6 @@ echo ""
 # sysctl -w net.ipv4.tcp_rmem="4096 8388608 16777216"
 # sysctl -w net.ipv4.tcp_wmem="4096 4194394 16777216"
 
-# sysctl -p
-
 
 echo "STEP 1. Create RPM repo.."
 echo ""
@@ -95,7 +98,6 @@ yum install -y drop-gateway-api
 yum install -y drop-cli
 yum install -y drop-plgn-cmd-exec
 
-yum update -y erlang 
 yum update -y drop-pyenv 
 yum update -y drop-core 
 yum update -y drop-gateway-api
