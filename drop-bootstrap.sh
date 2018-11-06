@@ -35,6 +35,7 @@ echo ""
 
 # If haproxy use
 # groupadd haproxy
+# chown haproxy:haproxy /etc/haproxy/haproxy.cfg
 # chmod g+rw /etc/haproxy/haproxy.cfg
 # usermod -a -G haproxy drop-core
 # setsebool -P haproxy_connect_any=1
