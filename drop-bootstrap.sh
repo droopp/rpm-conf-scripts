@@ -22,7 +22,7 @@ echo ""
 # add grants to group
 # echo "STEP 0. Configure host.."
 
-# echo "%drop-core     ALL=(ALL)       NOPASSWD:    /usr/bin/systemctl, /usr/sbin/ifconfig, /usr/bin/rpm" >> /etc/sudoers
+# echo "%drop-core     ALL=(ALL)       NOPASSWD:    /usr/bin/systemctl, /usr/sbin/ifconfig, /usr/bin/rpm, /usr/bin/yum" >> /etc/sudoers
 
 # flush ip rules
 # enable multicast + vip annoncment
