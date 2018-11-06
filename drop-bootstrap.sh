@@ -30,6 +30,7 @@ echo ""
 
 # If docker use
 # groupadd docker
+# systemctl enable docker
 # systemctl restart docker
 # usermod -a -G docker drop-core
 
@@ -39,6 +40,10 @@ echo ""
 # chmod g+rw /etc/haproxy/haproxy.cfg
 # usermod -a -G haproxy drop-core
 # setsebool -P haproxy_connect_any=1
+
+# Run core
+# systemctl start drop-core
+# systemctl start drop-gateway-api
 
 # system conf
 #
