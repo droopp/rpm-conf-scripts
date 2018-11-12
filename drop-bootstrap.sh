@@ -34,6 +34,10 @@ echo ""
 # systemctl restart docker
 # usermod -a -G docker drop-core
 
+# add registry /etc/docker/daemon.json if not cert
+# echo '{"insecure-registries" : ["139.59.151.111:5000"]}' > /etc/docker/daemon.json
+# systemctl restart docker
+
 # If haproxy use
 # groupadd haproxy
 # chown haproxy:haproxy /etc/haproxy/haproxy.cfg
