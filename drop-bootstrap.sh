@@ -37,6 +37,9 @@ echo ""
 # add registry /etc/docker/daemon.json if not cert
 # echo '{"insecure-registries" : ["139.59.151.111:5000"]}' > /etc/docker/daemon.json
 # systemctl restart docker
+# echo 'export DROP_DOCKER_REGISTRY=139.59.151.111:5000' >> /root/.bashrc
+# echo 'export DROP_DOCKER_REGISTRY=139.59.151.111:5000' >> /home/drop-core/.bashrc
+
 
 # If haproxy use
 # groupadd haproxy
