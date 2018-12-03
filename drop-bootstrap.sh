@@ -109,10 +109,8 @@ yum install -y drop-pyenv
 yum install -y drop-core 
 yum install -y drop-gateway-api
 yum install -y drop-cli
-yum install -y drop-plgn-cmd-exec
 
 yum update -y drop-pyenv 
 yum update -y drop-core 
 yum update -y drop-gateway-api
 yum update -y drop-cli
-yum update -y drop-plgn-cmd-exec

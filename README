@@ -2,7 +2,12 @@
 # Install Guide
 # 
 
+
+
+
 1. curl http://139.59.151.111:8888/RPMS/drop-bootstrap.sh|sh
+   pssh -A -p 10 -O StrictHostKeyChecking=no -i -t 300 -l root -h hosts 'curl http://139.59.151.111:8888/RPMS/drop-bootstrap.sh|sh'
 
-2. wait while cluster start .. (check drop-cli -> freenode_list..)
+2. configure 
 
+3. wait while cluster start .. (check drop-cli -> freenode_list..)
