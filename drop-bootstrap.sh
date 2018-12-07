@@ -26,7 +26,11 @@ echo ""
 
 # flush ip rules
 # enable multicast + vip annoncment
+# 
+# systemctl stop firewalld
+# systemctl disable firewalld
 # iptables -F
+# iptables-save > /etc/sysconfig/iptables
 
 # If docker use
 # groupadd docker
