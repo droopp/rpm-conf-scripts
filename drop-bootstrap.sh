@@ -14,47 +14,10 @@ echo " "
 echo " "
 echo "     Bootstrap Scripts                                     "
 echo ""
-echo " curl http://139.59.151.111:8888/RPMS/drop-bootstrap.sh|sh     "
+echo " curl https://dropfaas.com/RPMS/drop-bootstrap.sh|sh     "
 echo ""
 
 
-
-# add grants to group
-# echo "STEP 0. Configure host.."
-
-# echo "%drop-core     ALL=(ALL)       NOPASSWD:    /usr/bin/systemctl, /usr/sbin/ifconfig, /usr/bin/rpm, /usr/bin/yum" >> /etc/sudoers
-
-# flush ip rules
-# enable multicast + vip annoncment
-# 
-# systemctl stop firewalld
-# systemctl disable firewalld
-# iptables -F
-# iptables-save > /etc/sysconfig/iptables
-
-# If docker use
-# groupadd docker
-# systemctl enable docker
-# systemctl restart docker
-# usermod -a -G docker drop-core
-
-# add registry /etc/docker/daemon.json if not cert
-# echo '{"insecure-registries" : ["139.59.151.111:5000"]}' > /etc/docker/daemon.json
-# systemctl restart docker
-# echo 'export DROP_DOCKER_REGISTRY=139.59.151.111:5000' >> /root/.bashrc
-# echo 'export DROP_DOCKER_REGISTRY=139.59.151.111:5000' >> /home/drop-core/.bashrc
-
-
-# If haproxy use
-# groupadd haproxy
-# chown haproxy:haproxy /etc/haproxy/haproxy.cfg
-# chmod g+rw /etc/haproxy/haproxy.cfg
-# usermod -a -G haproxy drop-core
-# setsebool -P haproxy_connect_any=1
-
-# Run core
-# systemctl start drop-core
-# systemctl start drop-gateway-api
 
 # system conf
 #
@@ -93,7 +56,7 @@ echo ""
 
 echo '[drop-master]
 name=drop master repo
-baseurl=http://139.59.151.111:8888/RPMS/
+baseurl=https://dropfaas.com/RPMS/
 gpgcheck=0
 enabled=1
 metadata_expire=1m
@@ -114,7 +77,42 @@ yum install -y drop-core
 yum install -y drop-gateway-api
 yum install -y drop-cli
 
-yum update -y drop-pyenv 
-yum update -y drop-core 
-yum update -y drop-gateway-api
-yum update -y drop-cli
+
+# add grants to group
+echo "STEP 3. Configure host.."
+
+ echo "%drop-core     ALL=(ALL)       NOPASSWD:    /usr/bin/systemctl, /usr/sbin/ifconfig, /usr/sbin/arping, /usr/bin/rpm, /usr/bin/yum, /usr/sbin/ip" >> /etc/sudoers
+
+# flush ip rules
+# enable multicast + vip annoncment
+# 
+# systemctl stop firewalld
+# systemctl disable firewalld
+# iptables -F
+# iptables-save > /etc/sysconfig/iptables
+
+# If docker use
+ groupadd docker
+ systemctl enable docker
+ systemctl restart docker
+ usermod -a -G docker drop-core
+
+# add registry /etc/docker/daemon.json if not cert
+# echo '{"insecure-registries" : ["139.59.151.111:5000"]}' > /etc/docker/daemon.json
+# systemctl restart docker
+
+ echo 'export DROP_DOCKER_REGISTRY=droopp' >> /root/.bashrc
+ echo 'export DROP_DOCKER_REGISTRY=droopp' >> /home/drop-core/.bashrc
+
+# If haproxy use
+ groupadd haproxy
+ chown haproxy:haproxy /etc/haproxy/haproxy.cfg
+ chmod g+rw /etc/haproxy/haproxy.cfg
+ usermod -a -G haproxy drop-core
+ setsebool -P haproxy_connect_any=1
+
+# Run core
+ systemctl start drop-core
+ systemctl start drop-gateway-api
+
+
