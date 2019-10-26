@@ -81,7 +81,7 @@ yum install -y drop-cli
 # add grants to group
 echo "STEP 3. Configure host.."
 
- echo "%drop-core     ALL=(ALL)       NOPASSWD:    /usr/bin/systemctl, /usr/sbin/ifconfig, /usr/sbin/arping, /usr/bin/rpm, /usr/bin/yum, /usr/sbin/ip" >> /etc/sudoers
+ echo "%drop-core     ALL=(ALL)       NOPASSWD:    /usr/bin/systemctl, /usr/sbin/ifconfig, /usr/sbin/arping, /usr/bin/rpm, /usr/bin/yum, /usr/sbin/ip, /usr/bin/kill" >> /etc/sudoers
 
 # flush ip rules
 # enable multicast + vip annoncment
