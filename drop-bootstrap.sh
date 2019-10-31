@@ -92,6 +92,9 @@ echo "STEP 3. Configure host.."
 # iptables-save > /etc/sysconfig/iptables
 
 # If docker use
+
+ echo 'export IS_DOCKER=1' >> /home/drop-core/.bashrc
+
  groupadd docker
  systemctl enable docker
  systemctl restart docker
@@ -105,6 +108,9 @@ echo "STEP 3. Configure host.."
  echo 'export DROP_DOCKER_REGISTRY=droopp' >> /home/drop-core/.bashrc
 
 # If haproxy use
+
+ echo 'export IS_HAPROXY=1' >> /home/drop-core/.bashrc
+ 
  groupadd haproxy
  chown haproxy:haproxy /etc/haproxy/haproxy.cfg
  chmod g+rw /etc/haproxy/haproxy.cfg
