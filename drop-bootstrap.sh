@@ -112,6 +112,7 @@ echo "STEP 3. Configure host.."
  curl https://raw.githubusercontent.com/droopp/nginx-gw/master/nginx.conf > /etc/nginx/nginx.conf
 
  chown -R nginx:nginx /etc/nginx/*
+ semanage port -a -t http_port_t -p tcp 8090
 
 # If docker use
 
