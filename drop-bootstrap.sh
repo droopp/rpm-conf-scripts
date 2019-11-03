@@ -64,6 +64,16 @@ http_caching=packages
 mirrorlist_expire=1m
 ' > /etc/yum.repos.d/drop.repo
 
+
+echo '[nginx]
+name=nginx repo
+baseurl=http://nginx.org/packages/mainline/centos/7/$basearch/
+gpgcheck=0
+enabled=1
+' > /etc/yum.repos.d/nginx.repo
+
+
+
 echo "STEP 2. Install packages.."
 echo ""
 
@@ -76,6 +86,9 @@ yum install -y drop-pyenv
 yum install -y drop-core 
 yum install -y drop-gateway-api
 yum install -y drop-cli
+
+yum install -y nginx
+yum install -y nginx-module-njs
 
 
 # add grants to group
@@ -90,6 +103,15 @@ echo "STEP 3. Configure host.."
 # systemctl disable firewalld
 # iptables -F
 # iptables-save > /etc/sysconfig/iptables
+
+# If nginx-gw is enabled
+
+ echo 'export IS_NGINX_GW=1' >> /home/drop-core/.bashrc
+
+ curl https://raw.githubusercontent.com/droopp/nginx-gw/master/make_request.js > /etc/nginx/make_request.js
+ curl https://raw.githubusercontent.com/droopp/nginx-gw/master/nginx.conf > /etc/nginx/nginx.conf
+
+ chown -R nginx:nginx /etc/nginx/*
 
 # If docker use
 
