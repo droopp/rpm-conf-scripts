@@ -113,6 +113,7 @@ echo "STEP 3. Configure host.."
 
  chown -R nginx:nginx /etc/nginx/*
  semanage port -a -t http_port_t -p tcp 8090
+ setsebool -P httpd_can_network_connect 1
 
 # If docker use
 
