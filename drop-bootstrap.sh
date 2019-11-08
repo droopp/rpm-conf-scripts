@@ -115,6 +115,8 @@ echo "STEP 3. Configure host.."
  semanage port -a -t http_port_t -p tcp 8090
  setsebool -P httpd_can_network_connect 1
 
+ systemctl enable nginx
+
 # If docker use
 
  echo 'export IS_DOCKER=1' >> /home/drop-core/.bashrc
@@ -144,5 +146,6 @@ echo "STEP 3. Configure host.."
 # Run core
  systemctl start drop-core
  systemctl start drop-gateway-api
-
+ 
+ systemctl start nginx
 
