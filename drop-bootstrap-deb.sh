@@ -64,21 +64,17 @@ add-apt-repository "deb [arch=amd64] https://download.docker.com/linux/debian $(
 apt update
 apt-cache policy docker-ce
 
-apt install -y alien
-
 mkdir -p /opt/repository/ && cd /opt/repository/
 
-curl -O https://dropfaas.com/RPMS/erlang-20.0.0-1.x86_64.rpm
-curl -O https://dropfaas.com/RPMS/drop-pyenv-0.1.0-1.x86_64.rpm
-curl -O https://dropfaas.com/RPMS/drop-core-0.3.1-1.x86_64.rpm
-curl -O https://dropfaas.com/RPMS/drop-gateway-api-0.2.1-1.x86_64.rpm
-curl -O https://dropfaas.com/RPMS/drop-cli-0.1.0-1.x86_64.rpm
+curl -O https://dropfaas.com/DEBS/erlang_20.0.0_amd64.deb
+curl -O https://dropfaas.com/DEBS/drop-pyenv_0.1.0_amd64.deb
+curl -O https://dropfaas.com/DEBS/drop-core_0.3.1_amd64.deb
+curl -O https://dropfaas.com/DEBS/drop-gateway-api_0.2.1_amd64.deb
+curl -O https://dropfaas.com/DEBS/drop-cli_0.1.0_amd64.deb
 
-curl -O https://dropfaas.com/RPMS/drop-plgn-cmd-exec-0.1.1-1.x86_64.rpm
-curl -O https://dropfaas.com/RPMS/drop-plgn-rrd-0.1.0-1.x86_64.rpm
-curl -O https://dropfaas.com/RPMS/drop-plgn-webbone-0.1.0-1.x86_64.rpm
-
-ls -l|awk '{print $9}'|xargs alien --scripts
+curl -O https://dropfaas.com/DEBS/drop-plgn-cmd-exec_0.1.1_amd64.deb
+curl -O https://dropfaas.com/DEBS/drop-plgn-rrd_0.1.0_amd64.deb
+curl -O https://dropfaas.com/DEBS/drop-plgn-webbone_0.1.0_amd64.deb
 
 
 echo "STEP 2. Install packages.."
@@ -87,8 +83,10 @@ echo ""
 apt install -y net-tools
 apt install -y haproxy
 apt install -y docker-ce
+apt install -y uuid-runtime
 
-ls -l|grep -v drop-plgn|awk '{print "/opt/repository/"$9}'|grep "\.deb"|xargs apt install -y
+
+ls -l|grep -v drop-plgn|awk '{print "/opt/repository/"$9}'|grep "\.deb"|xargs dpkg -i -y
 
 # apt install -y erlang 
 # apt install -y drop-pyenv 
