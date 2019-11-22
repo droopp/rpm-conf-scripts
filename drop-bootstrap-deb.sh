@@ -87,7 +87,7 @@ apt install -y haproxy
 apt install -y docker-ce
 apt install -y uuid-runtime
 apt install -y arping
-
+apt install -y sqlite3
 
 ls -l|grep -v drop-plgn|awk '{print "/opt/repository/"$9}'|grep "\.deb"|xargs dpkg -i 
 

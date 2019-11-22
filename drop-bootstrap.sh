@@ -80,6 +80,7 @@ echo ""
 yum install -y net-tools
 yum install -y haproxy
 yum install -y docker
+yum install -y sqlite3
 
 yum install -y erlang 
 yum install -y drop-pyenv 
