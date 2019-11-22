@@ -57,7 +57,7 @@ echo ""
 echo "deb http://nginx.org/packages/debian `lsb_release -cs` nginx" | sudo tee /etc/apt/sources.list.d/nginx.list
 
 apt update
-apt install -y apat-transport-https ca-certificates curl gnupg2 software-properties-common
+apt install -y apt-transport-https ca-certificates curl gnupg2 software-properties-common
 
 curl -fsSL https://download.docker.com/linux/debian/gpg | sudo apt-key add -
 add-apt-repository "deb [arch=amd64] https://download.docker.com/linux/debian $(lsb_release -cs) stable"
@@ -80,13 +80,16 @@ curl -O https://dropfaas.com/DEBS/drop-plgn-webbone_0.1.0_amd64.deb
 echo "STEP 2. Install packages.."
 echo ""
 
+useradd -m drop-core -s /bin/bash
+
 apt install -y net-tools
 apt install -y haproxy
 apt install -y docker-ce
 apt install -y uuid-runtime
+apt install -y arping
 
 
-ls -l|grep -v drop-plgn|awk '{print "/opt/repository/"$9}'|grep "\.deb"|xargs dpkg -i -y
+ls -l|grep -v drop-plgn|awk '{print "/opt/repository/"$9}'|grep "\.deb"|xargs dpkg -i 
 
 # apt install -y erlang 
 # apt install -y drop-pyenv 
@@ -101,7 +104,7 @@ apt install -y nginx-module-njs
 # add grants to group
 echo "STEP 3. Configure host.."
 
- echo "%drop-core     ALL=(ALL)       NOPASSWD:    /usr/bin/systemctl, /usr/sbin/ifconfig, /usr/sbin/arping, /usr/bin/apt, /usr/sbin/ip, /usr/bin/kill" >> /etc/sudoers
+ echo "%drop-core     ALL=(ALL)       NOPASSWD:    /bin/systemctl, /sbin/ifconfig, /usr/sbin/arping, /usr/bin/dpkg, /sbin/ip, /bin/kill" >> /etc/sudoers
 
 # flush ip rules
 # enable multicast + vip annoncment
