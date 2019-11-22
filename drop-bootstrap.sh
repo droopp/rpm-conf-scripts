@@ -95,7 +95,12 @@ yum install -y nginx-module-njs
 # add grants to group
 echo "STEP 3. Configure host.."
 
+if grep -q drop-core /etc/sudoers; then
+    echo "already configured.."
+else
  echo "%drop-core     ALL=(ALL)       NOPASSWD:    /usr/bin/systemctl, /usr/sbin/ifconfig, /usr/sbin/arping, /usr/bin/rpm, /usr/bin/yum, /usr/sbin/ip, /usr/bin/kill" >> /etc/sudoers
+
+fi
 
 # flush ip rules
 # enable multicast + vip annoncment
