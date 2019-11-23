@@ -124,6 +124,8 @@ fi
 # If nginx-gw is enabled
 
  echo 'export IS_NGINX_GW=1' >> /home/drop-core/.bashrc
+ echo 'IS_NGINX_GW=1' >> /etc/drop-env
+
 
  curl https://raw.githubusercontent.com/droopp/nginx-gw/master/make_request.js > /etc/nginx/make_request.js
  curl https://raw.githubusercontent.com/droopp/nginx-gw/master/nginx.conf > /etc/nginx/nginx.conf
@@ -135,6 +137,7 @@ fi
 # If docker use
 
  echo 'export IS_DOCKER=1' >> /home/drop-core/.bashrc
+ echo 'IS_DOCKER=1' >> /etc/drop-env
 
  groupadd docker
  systemctl enable docker
@@ -147,11 +150,13 @@ fi
 
  echo 'export DROP_DOCKER_REGISTRY=droopp' >> /root/.bashrc
  echo 'export DROP_DOCKER_REGISTRY=droopp' >> /home/drop-core/.bashrc
+ echo 'DROP_DOCKER_REGISTRY=droopp' >> /etc/drop-env
 
 # If haproxy use
 
  echo 'export IS_HAPROXY=1' >> /home/drop-core/.bashrc
- 
+ echo 'IS_HAPROXY=1' >> /etc/drop-env
+
  groupadd haproxy
  chown haproxy:haproxy /etc/haproxy/haproxy.cfg
  chmod g+rw /etc/haproxy/haproxy.cfg
