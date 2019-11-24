@@ -80,7 +80,7 @@ curl -O https://dropfaas.com/DEBS/drop-plgn-rrd_0.1.0_amd64.deb
 curl -O https://dropfaas.com/DEBS/drop-plgn-webbone_0.1.0_amd64.deb
 
 #fix libssl not found
-# curl -O http://security-cdn.debian.org/debian-security/pool/updates/main/o/openssl/libssl1.0.0_1.0.1t-1+deb8u12_amd64.deb
+curl -O http://security-cdn.debian.org/debian-security/pool/updates/main/o/openssl/libssl1.0.0_1.0.1t-1+deb8u12_amd64.deb
 
 echo "STEP 2. Install packages.."
 echo ""
