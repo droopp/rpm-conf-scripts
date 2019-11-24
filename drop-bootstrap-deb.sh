@@ -14,7 +14,7 @@ echo " "
 echo " "
 echo "     Bootstrap Scripts                                     "
 echo ""
-echo " curl https://dropfaas.com/RPMS/drop-bootstrap-deb.sh|sh     "
+echo " curl https://dropfaas.com/DEBS/drop-bootstrap-deb.sh|sh     "
 echo ""
 
 
@@ -54,7 +54,10 @@ echo ""
 echo "STEP 1. Create DEB repo.."
 echo ""
 
-echo "deb http://nginx.org/packages/debian `lsb_release -cs` nginx" | sudo tee /etc/apt/sources.list.d/nginx.list
+
+echo "deb http://nginx.org/packages/mainline/debian `lsb_release -cs` nginx" \
+        | sudo tee /etc/apt/sources.list.d/nginx.list
+curl -fsSL https://nginx.org/keys/nginx_signing.key | sudo apt-key add -
 
 apt update
 apt install -y apt-transport-https ca-certificates curl gnupg2 software-properties-common
@@ -77,7 +80,7 @@ curl -O https://dropfaas.com/DEBS/drop-plgn-rrd_0.1.0_amd64.deb
 curl -O https://dropfaas.com/DEBS/drop-plgn-webbone_0.1.0_amd64.deb
 
 #fix libssl not found
-curl -O http://security-cdn.debian.org/debian-security/pool/updates/main/o/openssl/libssl1.0.0_1.0.1t-1+deb8u12_amd64.deb
+# curl -O http://security-cdn.debian.org/debian-security/pool/updates/main/o/openssl/libssl1.0.0_1.0.1t-1+deb8u12_amd64.deb
 
 echo "STEP 2. Install packages.."
 echo ""
@@ -164,7 +167,17 @@ fi
 
 
 # Run core
-# systemctl start drop-core
-#  systemctl start drop-gateway-api
-#  systemctl start nginx
+ systemctl start drop-core
+ systemctl start drop-gateway-api
+ systemctl start nginx
+
+# Install Plugins 
+
+sleep 5
+
+ls -l|grep drop-plgn|awk '{print "/opt/repository/"$9}'|grep "\.deb"|xargs dpkg -i 
+
+
+
+
 
